@@ -109,6 +109,45 @@ document.getElementById("next").addEventListener("click", () => {
     playSong(songIndex);
     updateSelected(songIndex);
 });
+let sleepTimerId = null;
+let countdownInterval = null;
+
+function handleSleepSelection() {
+    const selected = document.getElementById("timerSelect").value;
+    const countdownEl = document.getElementById("countdownDisplay");
+
+    // Clear previous timers
+    if (sleepTimerId) clearTimeout(sleepTimerId);
+    if (countdownInterval) clearInterval(countdownInterval);
+    countdownEl.textContent = "";
+
+    if (!selected) return;
+
+    const seconds = parseInt(selected.replace('s', ''));
+    if (isNaN(seconds)) return;
+
+    let remaining = seconds;
+
+    // Start countdown display
+    countdownInterval = setInterval(() => {
+        remaining--;
+        const m = Math.floor(remaining / 60);
+        const s = remaining % 60;
+        countdownEl.textContent = ` | Stops in ${m}m ${s < 10 ? '0' : ''}${s}s`;
+        if (remaining <= 0) clearInterval(countdownInterval);
+    }, 1000);
+
+    // Set sleep timer
+    sleepTimerId = setTimeout(() => {
+        audioElement.pause();
+        audioElement.currentTime = 0;
+        masterPlay.classList.remove("fa-pause-circle");
+        masterPlay.classList.add("fa-play-circle");
+        gif.style.opacity = 0;
+        countdownEl.textContent = " | Music stopped";
+    }, seconds * 1000);
+}
+
 
 document.getElementById("previous").addEventListener("click", () => {
     songIndex = songIndex > 0 ? songIndex - 1 : 0;
@@ -142,6 +181,11 @@ function updateMediaSession(song) {
     }
 }
 
+// === Initial Load ===
+audioElement.src = songs[songIndex].filePath;
+masterSongName.innerText = songs[songIndex].songName;
+audioElement.currentTime = 0;
+updateMediaSession(songs[songIndex]);
 // === Initial Load ===
 audioElement.src = songs[songIndex].filePath;
 masterSongName.innerText = songs[songIndex].songName;
