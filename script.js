@@ -20,6 +20,16 @@ const songs = [
     {songName: "കനയക മര അമമ ", filePath: "8.mp3", coverPath: "8.jpg"},
     {songName: "നനദNANNICHRISTIAN DEVOTIONAL ", filePath: "9.mp3", coverPath: "9.jpg"},
     {songName: "മഘനകകടട തകർതത പടയ സപപർ ഗന  അകകരയകക യതരചയയ   ", filePath: "10.mp3", coverPath: "10.jpg"},
+    {songName: "Israyelin Nadhanai  ഇസരയലൻ നഥനയ  ", filePath: "11.mp3", coverPath: "11.jpeg"},
+    {songName: "K.S. CHITHRA CHRISTIAN DEOVOTIONAL  ", filePath: "12.mp3", coverPath: "11.jpeg"},
+    {songName: "MINNAMINNIPOLE  CHRISTMAS CAROL SONG   ", filePath: "13.mp3", coverPath: "11.jpeg"},
+    {songName: " Nandi Nandi En Daivame  Kedarnath  Kathukutty ", filePath: "14.mp3", coverPath: "11.jpeg"},
+    {songName: "Nazarethin Video Song  ", filePath: "15.mp3", coverPath: "11.jpeg"},
+    {songName: "Ninte Hitham Pole  നനറ ഹത പല  Christian   ", filePath: "16.mp3", coverPath: "11.jpeg"},
+    {songName: "Njan Ninne Kaividumo ", filePath: "17.mp3", coverPath: "11.jpeg"},
+    {songName: "Songs Of The Week  Christian Devotional Songs ", filePath: "18.mp3", coverPath: "11.jpeg"},
+    {songName: "Uruki Uruki Theernnidam Lyrics  Anna Baby  ", filePath: "19.mp3", coverPath: "11.jpeg"},
+    {songName: "Uyirin Naadhane Video Song  Joseph Movie", filePath: "20.mp3", coverPath: "11.jpeg"},
 ];
 
 // === Populate Song List ===
@@ -133,7 +143,7 @@ function handleSleepSelection() {
         remaining--;
         const m = Math.floor(remaining / 60);
         const s = remaining % 60;
-        countdownEl.textContent = ` | Stops in ${m}m ${s < 10 ? '0' : ''}${s}s`;
+        countdownEl.textContent = ` | Stops in ${m}m ${s < 20 ? '0' : ''}${s}s`;
         if (remaining <= 0) clearInterval(countdownInterval);
     }, 1000);
 
