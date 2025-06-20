@@ -187,6 +187,44 @@ masterSongName.innerText = songs[songIndex].songName;
 audioElement.currentTime = 0;
 updateMediaSession(songs[songIndex]);
 // === Initial Load ===
+audioElement.addEventListener("play", () => {
+  if ("mediaSession" in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: document.getElementById("masterSongName").innerText,
+      artist: "AJ Songs",
+      album: "NCS Playlist",
+      artwork: [
+        { src: "logo.png", sizes: "96x96", type: "image/png" },
+        { src: "logo.png", sizes: "128x128", type: "image/png" },
+        { src: "logo.png", sizes: "192x192", type: "image/png" },
+        { src: "logo.png", sizes: "256x256", type: "image/png" },
+        { src: "logo.png", sizes: "384x384", type: "image/png" },
+        { src: "logo.png", sizes: "512x512", type: "image/png" }
+      ]
+    });
+
+    navigator.mediaSession.setActionHandler("play", () => {
+      audioElement.play();
+      masterPlay.classList.remove("fa-play-circle");
+      masterPlay.classList.add("fa-pause-circle");
+    });
+
+    navigator.mediaSession.setActionHandler("pause", () => {
+      audioElement.pause();
+      masterPlay.classList.remove("fa-pause-circle");
+      masterPlay.classList.add("fa-play-circle");
+    });
+
+    navigator.mediaSession.setActionHandler("nexttrack", () => {
+      document.getElementById("next").click(); // simulate next button click
+    });
+
+    navigator.mediaSession.setActionHandler("previoustrack", () => {
+      document.getElementById("previous").click(); // simulate previous button click
+    });
+  }
+});
+
 audioElement.src = songs[songIndex].filePath;
 masterSongName.innerText = songs[songIndex].songName;
 audioElement.currentTime = 0;
