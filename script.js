@@ -43,10 +43,7 @@ masterPlay.addEventListener("click", () => {
     if (audioElement.paused || audioElement.currentTime <= 0) {
         audioElement.play();
         togglePlayPause(true);
-    } else {
-        audioElement.pause();
-        togglePlayPause(false);
-    }
+    } 
 });
 
 const togglePlayPause = (isPlaying) => {
