@@ -48,7 +48,7 @@ masterPlay.addEventListener("click", () => {
 
 const togglePlayPause = (isPlaying) => {
     masterPlay.classList.toggle("fa-play-circle", !isPlaying);
-    masterPlay.classList.toggle("fa-pause-circle", isPlaying);
+  
     gif.style.opacity = isPlaying ? 1 : 0;
 };
 
