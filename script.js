@@ -216,10 +216,7 @@ audioElement.addEventListener("play", () => {
       masterPlay.classList.add("fa-pause-circle");
     });
 
-    navigator.mediaSession.setActionHandler("pause", () => {
-      audioElement.pause();
-      masterPlay.classList.remove("fa-pause-circle");
-      masterPlay.classList.add("fa-play-circle");
+   
     });
 
     navigator.mediaSession.setActionHandler("nexttrack", () => {
